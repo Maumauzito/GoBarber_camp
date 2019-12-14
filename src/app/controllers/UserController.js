@@ -17,9 +17,9 @@ class UserController {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
-    const userExixt = await User.findOne({ where: { email: req.body.email } });
+    const userExixts = await User.findOne({ where: { email: req.body.email } });
 
-    if (userExixt) {
+    if (userExixts) {
       return res.status(400).json({ error: 'User alredy exists.' });
     }
 
@@ -57,8 +57,9 @@ class UserController {
     const user = await User.findByPk(req.userId);
 
     if (email !== user.email) {
-      const userEmail = User.findOne({ where: { email } });
-      if (userEmail) {
+      const userExixts = await User.findOne({ where: { email } });
+
+      if (userExixts) {
         return res.status(400).json({ error: 'User email alredy exists.' });
       }
     }
